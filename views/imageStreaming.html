@@ -2,18 +2,64 @@
     <head>
         <meta charset="utf-8">
         <title>NOA</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="imageStreaming.css" type="text/css">
+        <script src="imageStreaming.js"></script>
     </head>
     <script>
-        $().ready(function()   {
+        $(document).ready(function()   {
+            var fileList = ['dahyon1.jpg', 'dahyon2.jpg', 'dahyon3.jpg', 'dahyon4.jpg'];
+            var showIndex = 1;
+            $('#prevItem').click(function() {
+                showIndex = showIndex - 1;
+                showIndex = changeCss(fileList, showIndex);
+                
+            });
+            
+            $('#nextItem').click(function() {
+                showIndex = showIndex + 1;
+                showIndex = changeCss(fileList, showIndex);
+            });
+
+            $('.hButton').hover(function() {
+                $(this).animate({width : '50px'}, 400);
+            }, function() {
+                $(this).stop(true, true);
+                $(this).animate({width : '20px'}, 400);
+            }, );
         });
     </script>
     <body>
-        <div id='topNullSpace'></div>
         <div id='topMenu'>
             <span id='logoSpace'> </span>
         </div>
         <div id='contentsBody'>
+            <span id='leftMenu'>
+                <div><button class='hButton' id='list'></button></div>
+                <div><button class='hButton' id='history'></button></div>
+                <div><button class='hButton' id='star'></button></div>
+            </span>
 
+            <span id='contentsView'>
+                <span id='leftContent' class='contentSpace'>
+                    <div class='contentPreviewTopNullSpace'></div>
+                    <div id='prevItem' class='preview item'></div>
+                </span>
+                <span id='mainContent' class='contentSpace'>
+                    <div id='nameSpace'></div>
+                    <div id='contentsItem' class='content item'></div>
+                </span>
+                <span id='rightContent' class='contentSpace'>
+                    <div class='contentPreviewTopNullSpace'></div>
+                    <div id='nextItem' class='preview item'></div>
+                </span>
+            </span>
+
+            <span id='rightMenu'>
+                <button id='showValue'></button>
+                <button id='repeat'></button>
+                <button id='shuffle'></button>
+            </span>
         </div>
         <div id='footer'></div>
     </body>
