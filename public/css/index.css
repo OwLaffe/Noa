@@ -26,3 +26,29 @@
 
 .MainTop {  height: 400px; background: red; }
 .MainBottom {  height: 200px; background: yellow; }
+.LoginForm {  display: none;  background: orange; text-align: center; }
+.LoginForm input {
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: auto;
+  line-height: normal;
+  padding: 10px 10px;
+  transition: 0.2s;
+}
+.LoginForm input[type="text"],[type="password"]{  width: 300px;}
+.LoginForm input[type="submit"]{  width: 320px;}
+#btnCloseAccount {
+  margin-top: 10px;
+  height: 37px;
+  width: 37px;
+  border: 0px solid white;
+  border-radius: 18.5px;
+
+  background: gray;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+
+}
+#btnCloseAccount:hover { transform: rotate(180deg); }
