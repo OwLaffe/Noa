@@ -12,8 +12,6 @@ router.use(function(req, res, next){
 router.post("/login", function(req, res){
   var userId = req.body.userId;
   var userPw = req.body.userPw;
-  console.log(userId + " : " + userPw);
-  console.log(whiteList);
   if (userId in whiteList){
     if (userPw == whiteList[userId]){
       req.session.userId = userId;
