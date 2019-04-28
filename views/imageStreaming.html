@@ -15,11 +15,10 @@
 				var fileList = JSON.parse(msg).dir;
 	            var showIndex = 1;
 
-				alert(fileList[0]);
 				// Default Setting.
-		        $('#prevItem').css({'background-image' : 'url(' +  fileList[showIndex - 1] +')'});
-		        $('#contentsItem').css({'background-image' : 'url(' +  fileList[showIndex] +')'});
-		        $('#nextItem').css({'background-image' : 'url(' +  fileList[showIndex + 1] +')'});
+		        $('#prevItem').css({'background-image' : 'url("' +  fileList[showIndex - 1] +'")'});
+		        $('#contentsItem').css({'background-image' : 'url("' +  fileList[showIndex] +'")'});
+		        $('#nextItem').css({'background-image' : 'url("' +  fileList[showIndex + 1] +'")'});
 					
 	            $('#prevItem').click(function() {
 	                showIndex = showIndex - 1;
