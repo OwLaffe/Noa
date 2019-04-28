@@ -28,7 +28,7 @@ var authorization = require("./authorization/main");
 app.use("/", authorization);
 
 // Routes
-var ims = require("./routes/imageStreamingRouter.js")(app);
+var ims = require("./routes/imageStreamingRouter.js");
 app.use('/ims',ims);
 
 // default page

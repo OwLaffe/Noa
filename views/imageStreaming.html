@@ -8,18 +8,31 @@
     </head>
     <script>
         $(document).ready(function()   {
-            var fileList = ['dahyon1.jpg', 'dahyon2.jpg', 'dahyoni1.jpg','dahyon3.jpg', 'dahyon4.jpg','dahyoni2.jpg', 'dahyon5.jpg', 'dahyon6.jpg'];
-            var showIndex = 1;
-            $('#prevItem').click(function() {
-                showIndex = showIndex - 1;
-                showIndex = changeCss(fileList, showIndex);
-                
-            });
-            
-            $('#nextItem').click(function() {
-                showIndex = showIndex + 1;
-                showIndex = changeCss(fileList, showIndex);
-            });
+			$.ajax({
+				method: 'GET',
+				url: '/ims/dirlist'
+			}).done(function(msg) {
+				var fileList = JSON.parse(msg).dir;
+	            var showIndex = 1;
+
+				alert(fileList[0]);
+				// Default Setting.
+		        $('#prevItem').css({'background-image' : 'url(' +  fileList[showIndex - 1] +')'});
+		        $('#contentsItem').css({'background-image' : 'url(' +  fileList[showIndex] +')'});
+		        $('#nextItem').css({'background-image' : 'url(' +  fileList[showIndex + 1] +')'});
+					
+	            $('#prevItem').click(function() {
+	                showIndex = showIndex - 1;
+	                showIndex = changeCss(fileList, showIndex);
+	                
+	            });
+	            
+	            $('#nextItem').click(function() {
+	                showIndex = showIndex + 1;
+	                showIndex = changeCss(fileList, showIndex);
+	            });
+			});
+
 
             $('.hButton').hover(function() {
                 $(this).animate({width : '50px'}, 400);

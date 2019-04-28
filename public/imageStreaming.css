@@ -99,17 +99,6 @@
     margin-bottom: 20px;
 }
 
-#prevItem   {
-    background-image:  url("dahyon1.jpg");
-}
-
-#contentsItem   {
-    background-image:  url("dahyon2.jpg");
-}
-
-#nextItem   {
-    background-image:  url("dahyon3.jpg"); 
-}
 
 .hButton {
     width: 20px;
