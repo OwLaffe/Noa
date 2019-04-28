@@ -27,7 +27,7 @@ app.use("/", authorization);
 
 // default page
 app.get("/", function(req, res){
-  res.render("index.html");
+  res.render("index", {});
 });
 
 app.listen(35008, function(){
