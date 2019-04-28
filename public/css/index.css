@@ -29,8 +29,14 @@
 }
 
 .MainTop {  height: 400px; }
-.MainBottom {  height: 400px; }
-.LoginForm {  display: none;  text-align: center; }
+.MainBottom {  position: relative; height: 400px; }
+.LoginForm {
+  display: none;
+  position: absolute;
+  top:0%; left: 50%;
+  transform: translate(calc(-50% - 50px), 0);
+  text-align: center;
+}
 .LoginForm input {
   color: black;
   border: 1px solid black;
@@ -40,8 +46,9 @@
   padding: 10px 10px;
   transition: 0.2s;
 }
-.LoginForm input[type="text"],[type="password"]{  width: 200px;}
-.LoginForm input[type="submit"]{  width: 220px;}
+.LoginForm input { margin-bottom: 5px;} 
+.LoginForm input[type="text"],[type="password"]{  width: 80px;}
+.LoginForm input[type="submit"]{  width: 100px;}
 #btnCloseAccount {
   margin-top: 10px;
   height: 37px;
