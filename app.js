@@ -18,12 +18,18 @@ app.use(session({
 app.use(express.static("public"));
 app.use(express.static("views"));
 
+
 app.set('view engine','ejs');
+app.engine('html', require('ejs').renderFile);
 app.set('views','./views');
 
 // authorization module
 var authorization = require("./authorization/main");
 app.use("/", authorization);
+
+// Routes
+var ims = require("./routes/imageStreamingRouter.js")(app);
+app.use('/ims',ims);
 
 // default page
 app.get("/", function(req, res){
