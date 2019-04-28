@@ -1,7 +1,7 @@
 .Wrapper {
 
-  width: 800px;
-  height: 600px;
+  width: 1200px;
+  height: 800px;
 
   position:absolute;
   top:50%; left:50%;
@@ -15,18 +15,22 @@
   width: 200px;
   height: 400px;
   text-align: center;
-  padding-top: 200px;
-  background: green;
+  padding-top: 400px;
+
+  font-size: 15pt;
+  font-weight: bold;
 }
 
 .Main {
-  width: 400px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
+  background-image: url('/img/logo1.png');
+  background-size: cover;
 }
 
-.MainTop {  height: 400px; background: red; }
-.MainBottom {  height: 200px; background: yellow; }
-.LoginForm {  display: none;  background: orange; text-align: center; }
+.MainTop {  height: 400px; }
+.MainBottom {  height: 400px; }
+.LoginForm {  display: none;  text-align: center; }
 .LoginForm input {
   color: black;
   border: 1px solid black;
@@ -36,8 +40,8 @@
   padding: 10px 10px;
   transition: 0.2s;
 }
-.LoginForm input[type="text"],[type="password"]{  width: 300px;}
-.LoginForm input[type="submit"]{  width: 320px;}
+.LoginForm input[type="text"],[type="password"]{  width: 200px;}
+.LoginForm input[type="submit"]{  width: 220px;}
 #btnCloseAccount {
   margin-top: 10px;
   height: 37px;
