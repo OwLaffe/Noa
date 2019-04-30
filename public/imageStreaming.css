@@ -37,50 +37,52 @@
 
 
 #contentsView   {
-    float: left;
-    border: 1px solid black;
-    width: 60%;
-    height: 100%;
+	float: left;
+	border: 1px solid black;
+	width: 60%;
+	height: 100%;
 }
 
 #rightMenu  {
-    float: left;
-    border: 1px solid black;
-    width: 25%;
-    height: 100%;
+	float: left;
+	border: 1px solid black;
+	width: 25%;
+	height: 100%;
 }
 
 #leftContent   {
-    width: 100px;
-    height: 100%;
-    margin-right: 20px;
+	width: 100px;
+	height: 100%;
+	margin-right: 20px;
 }
 
 #mainContent   {
-    width: calc(100% - 240px);
-    height: 100%;
+	width: calc(100% - 240px);
+	height: 100%;
 }
 
 #rightContent  {
-    width: 100px;
-    height: 100%;
-    margin-left: 20px;
+	width: 100px;
+	height: 100%;
+	margin-left: 20px;
 }
 
 .contentSpace   {
-    float: left;
+	float: left;
 }
 
 .item   {
-    background-color: rgb(126, 126, 126);
-    border: 1px solid black;
-    background-position: center;
-    background-size: contain;
-    background-repeat:no-repeat
+	background-color: rgb(126, 126, 126);
+	border: 1px solid black;
+	background-position: center;
+	background-size: contain;
+	background-repeat:no-repeat
 }
 
 #nameSpace{
-    height: 20px;
+	height: 20px;
+	font-size: 12px;
+	border: 1px solid black;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -101,7 +103,7 @@
 
 
 .hButton {
-    width: 20px;
     height: 20px;
     background-color: #4286f4;
+	border: 1px solid black;
 }

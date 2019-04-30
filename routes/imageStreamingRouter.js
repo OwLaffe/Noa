@@ -13,12 +13,14 @@ router.get('/home', function(req, res){
 router.get('/dirList', function(req, res)	{
 	var resObj = new Object();
 
-	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk/사진 - 실사/은꼴';
+//	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk/사진 - 실사/은꼴';
+	var destFolder = '/home/chj/workspace/Noa/public/da';
 	resObj.dir = [];
 	fs.readdir(destFolder, function(err, files)	{
 		for(var i = 0; i < files.length; i++)	{
 			if(files[i].endsWith("png") || files[i].endsWith("jpg"))	{
-				resObj.dir.push('usb1/ondisk/사진 - 실사/은꼴'+ '/' + files[i]);
+//				resObj.dir.push('usb1/ondisk/사진 - 실사/은꼴'+ '/' + files[i]);
+				resObj.dir.push('da/' + files[i]);
 			}
 		}
 		res.send(JSON.stringify(resObj));

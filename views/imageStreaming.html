@@ -5,6 +5,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="imageStreaming.css" type="text/css">
         <script src="imageStreaming.js"></script>
+        <script src="hbutton.js"></script>
     </head>
     <script>
         $(document).ready(function()   {
@@ -19,26 +20,35 @@
 		        $('#prevItem').css({'background-image' : 'url("' +  fileList[showIndex - 1] +'")'});
 		        $('#contentsItem').css({'background-image' : 'url("' +  fileList[showIndex] +'")'});
 		        $('#nextItem').css({'background-image' : 'url("' +  fileList[showIndex + 1] +'")'});
+				$('#nameSpace').text(fileList[showIndex]);
 					
 	            $('#prevItem').click(function() {
 	                showIndex = showIndex - 1;
 	                showIndex = changeCss(fileList, showIndex);
+					$('#nameSpace').text(fileList[showIndex]);
 	                
 	            });
 	            
 	            $('#nextItem').click(function() {
 	                showIndex = showIndex + 1;
 	                showIndex = changeCss(fileList, showIndex);
+					$('#nameSpace').text(fileList[showIndex]);
 	            });
 			});
 
-
-            $('.hButton').hover(function() {
-                $(this).animate({width : '50px'}, 400);
-            }, function() {
-                $(this).stop(true, true);
-                $(this).animate({width : '20px'}, 400);
-            }, );
+			$('#list').hbutton({
+				longText: 'List', 
+				longWidth: '40px',
+			});
+			$('#history').hbutton({
+				longText: 'History', 
+				longWidth: '60px',
+				animateTime: '200'
+			});
+			$('#star').hbutton({
+				longText: 'Star', 
+				longWidth: '40px',
+			});
         });
     </script>
     <body>
@@ -47,9 +57,15 @@
         </div>
         <div id='contentsBody'>
             <span id='leftMenu'>
-                <div><button class='hButton' id='list'></button></div>
-                <div><button class='hButton' id='history'></button></div>
-                <div><button class='hButton' id='star'></button></div>
+                <div>
+					<button class='hButton' id='list'></button>
+				</div>
+                <div>
+					<button class='hButton' id='history'></button>
+				</div>
+                <div>
+					<button class='hButton' id='star'></button>
+				</div>
             </span>
 
             <span id='contentsView'>
