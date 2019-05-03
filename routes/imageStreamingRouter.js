@@ -2,6 +2,15 @@ var express = require('express');
 var fs = require('fs');
 var router = express.Router();
 
+router.use("/", function(req, res, next){
+	if (!req.user.userId) {
+		res.redirect("/");
+	}
+	else {
+		next();
+	}
+});
+
 router.get('/', function(req, res){
 	res.render('imageStreaming.html');
 });
@@ -15,6 +24,7 @@ router.get('/dirList', function(req, res)	{
 
 	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk';
 	var relFolder = destFolder.split('public/')[1];
+
 	resObj.dir = [];
 	resObj.fil = [];
 	resObj.pwd = destFolder;
