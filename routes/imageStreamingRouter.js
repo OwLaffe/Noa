@@ -2,6 +2,15 @@ var express = require('express');
 var fs = require('fs');
 var router = express.Router();
 
+router.use("/", function(req, res, next){
+	if (!req.user.userId) {
+		res.redirect("/");
+	}
+	else {
+		next();
+	}
+});
+
 router.get('/', function(req, res){
 	res.render('imageStreaming.html');
 });
@@ -14,7 +23,7 @@ router.get('/dirList', function(req, res)	{
 	var resObj = new Object();
 
 //	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk/사진 - 실사/은꼴';
-	var destFolder = '/home/chj/workspace/Noa/public/da';
+	var destFolder = 'C:\\Users\\owlsogul\\Documents\\GitHub\\Noa\\public\\da';
 	resObj.dir = [];
 	fs.readdir(destFolder, function(err, files)	{
 		for(var i = 0; i < files.length; i++)	{
