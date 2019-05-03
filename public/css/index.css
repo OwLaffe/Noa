@@ -1,29 +1,30 @@
 .Wrapper {
-
-  width: 800px;
-  height: 800px;
-
-  position:absolute;
-  top:50%; left:50%;
-  transform: translate(-50%, -50%);
-
+  transition: 0.3s;
 }
 
-.LeftFloat {  float: left;}
+.Wrapper.ZoomOut {
+  width: 130px;
+  height: 130px;
+}
 
-.Main {
+.Wrapper.ZoomIn {
   width: 800px;
   height: 800px;
+}
+
+.Main {
+  width: 100%;
+  height: 100%;
   background-image: url('/img/logo1.png');
   background-size: cover;
 }
 
-.MainTop {  height: 400px; }
-.MainBottom {  position: relative; height: 400px; }
+.MainTop {  height: 70%; }
+.MainBottom {  position: relative; height: 30%; }
 .LoginForm {
   display: none;
   position: absolute;
-  top:0%; left: 50%;
+  top:-65%; left: 50%;
   transform: translateX(calc(-50% - 50px));
   text-align: center;
 }
