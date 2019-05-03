@@ -9,30 +9,49 @@
     </head>
     <script>
         $(document).ready(function()   {
+			var lToggle = false;
+			var fileList, pwd, dirList;
+
 			$.ajax({
 				method: 'GET',
 				url: '/ims/dirlist'
 			}).done(function(msg) {
-				var fileList = JSON.parse(msg).dir;
-	            var showIndex = 1;
+				var jsonMsg = JSON.parse(msg);
+				fileList = jsonMsg.fil;
+				dirList = jsonMsg.dir;
+				pwd = JSON.parse(msg).pwd;
+
+	            var showIndex = 0;
 
 				// Default Setting.
-		        $('#prevItem').css({'background-image' : 'url("' +  fileList[showIndex - 1] +'")'});
-		        $('#contentsItem').css({'background-image' : 'url("' +  fileList[showIndex] +'")'});
-		        $('#nextItem').css({'background-image' : 'url("' +  fileList[showIndex + 1] +'")'});
-				$('#nameSpace').text(fileList[showIndex]);
+				if( fileList.length > 2) {
+					changeCss(fileList, showIndex);
+				}
+				else if(fileList.length == 2) {
+			        $('#prevItem').css({'background-image' : 'url("' +  fileList[1] +'")'});
+			        $('#contentsItem').css({'background-image' : 'url("' +  fileList[0] +'")'});
+			        $('#nextItem').css({'background-image' : 'url("' +  fileList[1] +'")'});
+					$('#nameSpace').text(getFileName(fileList[0]));
+				}
+				else if(fileList.length == 1) {
+			        $('#prevItem').css({'background-image' : 'url("' +  fileList[0] +'")'});
+			        $('#contentsItem').css({'background-image' : 'url("' +  fileList[0] +'")'});
+			        $('#nextItem').css({'background-image' : 'url("' +  fileList[0] +'")'});
+					$('#nameSpace').text(getFileName(fileList[0]));
+				}
+				else {
+					$('#nameSpace').text(getFileName(pwd));
+				}
 					
 	            $('#prevItem').click(function() {
 	                showIndex = showIndex - 1;
 	                showIndex = changeCss(fileList, showIndex);
-					$('#nameSpace').text(fileList[showIndex]);
 	                
 	            });
 	            
 	            $('#nextItem').click(function() {
 	                showIndex = showIndex + 1;
 	                showIndex = changeCss(fileList, showIndex);
-					$('#nameSpace').text(fileList[showIndex]);
 	            });
 			});
 
@@ -40,6 +59,57 @@
 				longText: 'List', 
 				longWidth: '40px',
 			});
+
+			$('#list').on('click', function() {
+				if(lToggle) {
+					$(this).parent().children('#fileList').remove();
+				}
+				else {
+					appendFileList(fileList, dirList);
+				}
+				lToggle = !lToggle;
+			});
+
+			$(document).on('click', '.fileLink', function() {
+				for(var i = 0; i < fileList.length; i++)	{
+					if(getFileName(fileList[i]) == $(this).text())	{
+						var index = i;
+						break;
+					}
+				}
+				changeCss(fileList, index);
+			});
+
+			$(document).on('click', '.dirLink', function() {
+				var destDir = "";
+				if($(this).text() == "..") {
+					for(var i = 0; i < pwd.split("/").length - 1; i++) {
+						destDir =  destDir + pwd.split("/")[i];
+						if(i != pwd.split("/").length - 2) {
+							destDir += "/";
+						}
+					}
+				}
+				else {
+					destDir = pwd + "/" + $(this).text();
+				}
+
+				$.ajax({
+					method: 'POST',
+					data: { dir : destDir },
+					url: '/ims/dirlist'
+				}).done(function(msg) {
+					var jsonMsg = JSON.parse(msg);
+					dirList = jsonMsg.dir;
+					fileList = jsonMsg.fil;
+					pwd = jsonMsg.pwd;
+
+					$('#fileList').remove();
+
+					appendFileList(fileList, dirList);
+				});
+			});
+
 			$('#history').hbutton({
 				longText: 'History', 
 				longWidth: '60px',
@@ -57,7 +127,7 @@
         </div>
         <div id='contentsBody'>
             <span id='leftMenu'>
-                <div>
+                <div id='listDiv'>
 					<button class='hButton' id='list'></button>
 				</div>
                 <div>

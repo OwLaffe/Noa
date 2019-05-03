@@ -22,28 +22,48 @@ router.get('/home', function(req, res){
 router.get('/dirList', function(req, res)	{
 	var resObj = new Object();
 
-//	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk/사진 - 실사/은꼴';
-	var destFolder = 'C:\\Users\\owlsogul\\Documents\\GitHub\\Noa\\public\\da';
+	var destFolder = '/home/chj/workspace/Noa/public/usb1/ondisk';
+	var relFolder = destFolder.split('public/')[1];
+
 	resObj.dir = [];
+	resObj.fil = [];
+	resObj.pwd = destFolder;
 	fs.readdir(destFolder, function(err, files)	{
 		for(var i = 0; i < files.length; i++)	{
-			if(files[i].endsWith("png") || files[i].endsWith("jpg"))	{
-//				resObj.dir.push('usb1/ondisk/사진 - 실사/은꼴'+ '/' + files[i]);
-				resObj.dir.push('da/' + files[i]);
+			if(fs.lstatSync(destFolder + '/' + files[i]).isDirectory()) {
+				resObj.dir.push(relFolder + '/' + files[i]);
+			}
+			else {
+				resObj.fil.push(relFolder + '/' + files[i]);
 			}
 		}
 		res.send(JSON.stringify(resObj));
 	});
 });
 
-
 router.post('/dirList', function(req, res) {
 	var dir = req.body.dir;
 	var resObj = new Object();
 
-	var destFolder = '/home/chj/usb1/ondisk';
+	var destFolder = dir;
+	var relFolder = destFolder.split('public/')[1];
 
-	res.send(JSON.stringify(resObj));
+	resObj.dir = [];
+	resObj.fil = [];
+	resObj.isDir = [];
+	resObj.pwd = destFolder;
+
+	fs.readdir(destFolder, function(err, files)	{
+		for(var i = 0; i < files.length; i++)	{
+			if(fs.lstatSync(destFolder + '/' + files[i]).isDirectory()) {
+				resObj.dir.push(relFolder + '/' + files[i]);
+			}
+			else {
+				resObj.fil.push(relFolder + '/' + files[i]);
+			}
+		}
+		res.send(JSON.stringify(resObj));
+	});
 });
 
 module.exports = router;
