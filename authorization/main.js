@@ -15,7 +15,7 @@ router.post("/login", function(req, res){
   if (userId in whiteList){
     if (userPw == whiteList[userId]){
       req.session.userId = userId;
-      res.redirect("/");
+      res.redirect("/ims");
       console.log("login");
       return;
     }
